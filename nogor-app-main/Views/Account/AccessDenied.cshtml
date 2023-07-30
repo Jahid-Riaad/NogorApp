@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "অনুমতি নেই";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+	<section class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>লগিন করুন</h1>
+			</div>
+			<div class="col-md-12">
+				<div class="crumbs">
+					<a asp-action="Index" asp-controller="Home">হোম</a>
+					<span class="crumbs-span">/</span>
+					<span class="current">৪০৪</span>
+				</div>
+			</div>
+		</div><!-- End row -->
+	</section><!-- End container -->
+</div><!-- End breadcrumbs -->
+
+<section class="container main-content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="error_404">
+				<div>
+					<h2>৪০৪</h2>
+					<h3>আপনার এই কন্টেন্ট দেখার অনুমতি নেই</h3>
+				</div>
+				<div class="clearfix"></div><br>
+				<a asp-action="Index" asp-controller="Home" class="button large color margin_0">হোমে ফিরে যান</a>
+			</div>
+		</div><!-- End main -->
+	</div><!-- End row -->
+</section>
+

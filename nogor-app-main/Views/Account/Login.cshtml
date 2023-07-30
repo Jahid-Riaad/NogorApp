@@ -1,0 +1,56 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "লগিন";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+	<section class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>লগিন করুন</h1>
+			</div>
+			<div class="col-md-12">
+				<div class="crumbs">
+					<a asp-action="Index" asp-controller="Home">হোম</a>
+					<span class="crumbs-span">/</span>
+					<span class="current">লগিন</span>
+				</div>
+			</div>
+		</div><!-- End row -->
+	</section><!-- End container -->
+</div><!-- End breadcrumbs -->
+	
+<section class="container main-content">
+	<div class="login">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="page-content">
+					<h2>লগিন</h2>
+					<div class="form-style form-style-3">
+						<form id="loginForm" method="post" onsubmit="return false">
+							<div class="form-inputs clearfix">
+								<p class="login-text">
+									<input type="text" value="ইমেল" onfocus="if (this.value == 'ইমেল') {this.value = '';}" onblur="if (this.value == '') {this.value = 'ইমেল';}" name="email" id="email">
+									<i class="icon-envelope-alt"></i>
+								</p>
+								<p class="login-password">
+									<input type="password" value="পাসওয়ার্ড" onfocus="if (this.value == 'পাসওয়ার্ড') {this.value = '';}" onblur="if (this.value == '') {this.value = 'পাসওয়ার্ড';}" name="password" id="password">
+									<i class="icon-lock"></i>
+								</p>
+							</div>
+							<p class="form-submit login-submit">
+								<input type="submit" value="লগিন" class="button color small login-submit submit">
+							</p>
+							<div class="rememberme">
+								<label><input type="checkbox" checked="checked" name="rememberMe" id="rememberMe"> লগিন হয়ে থাকুন</label>
+							</div>
+						</form>
+					</div>
+				</div><!-- End page-content -->
+			</div><!-- End col-md-6 -->
+			
+		</div><!-- End row -->
+	</div><!-- End login -->
+</section><!-- End container -->
+

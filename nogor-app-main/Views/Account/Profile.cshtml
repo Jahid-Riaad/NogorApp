@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewData["Title"] = "প্রোফাইল";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+	<section class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>ব্যবহারকারীর প্রোফাইল</h1>
+			</div>
+			<div class="col-md-12">
+				<div class="crumbs">
+					<a asp-action="Index" asp-controller="Home">হোম</a>
+					<span class="crumbs-span">/</span>
+					<span class="current">প্রোফাইল</span>
+				</div>
+			</div>
+		</div><!-- End row -->
+	</section><!-- End container -->
+</div><!-- End breadcrumbs -->
+	
+<section class="container main-content">
+	<div class="row">
+		<div class="col-md-9">
+			<div class="row">
+				<div class="user-profile">
+					<div class="col-md-12">
+						<div class="page-content">
+							<h2>ব্যবহারকারীর পরিচিতি</h2>
+                            
+							<div class="user-profile-img">
+								<img width="60" height="60" src="" alt="admin" id="profileImage" style="height:80px !important;">
+							</div>
+							<div class="ul_list ul_list-icon-ok about-user">
+								<ul>
+									<li>
+										<i class="icon-plus"></i>নামঃ 
+										<span class="userName">Nazmul Hossain</span>
+									</li>
+									<li>
+										<i class="icon-asterisk"></i>পদবীঃ 
+										<span class="userDesignation">Administrator</span>
+									</li>
+									<li>
+										<i class="icon-group"></i>বিভাগঃ 
+										<span class="userDepartment">Administrator</span>
+									</li>
+								</ul>
+							</div>
+							<p class="userAbout"></p>
+							<div class="clearfix"></div>
+							<span class="user-follow-me">অনুসরন করুন</span>
+							<a href="#" original-title="Facebook" class="tooltip-n flink">
+								<span class="icon_i">
+									<span class="icon_square" icon_size="30" span_bg="#3b5997" span_hover="#2f3239">
+										<i class="social_icon-facebook"></i>
+									</span>
+								</span>
+							</a>
+							<a href="#" original-title="Twitter" class="tooltip-n tlink">
+								<span class="icon_i">
+									<span class="icon_square" icon_size="30" span_bg="#00baf0" span_hover="#2f3239">
+										<i class="social_icon-twitter"></i>
+									</span>
+								</span>
+							</a>
+							<a href="#" original-title="Linkedin" class="tooltip-n llink">
+								<span class="icon_i">
+									<span class="icon_square" icon_size="30" span_bg="#006599" span_hover="#2f3239">
+										<i class="social_icon-linkedin"></i>
+									</span>
+								</span>
+							</a>
+							<a href="" class="button large dark-blue-button editprof">
+								<i class="icon-edit"></i>প্রোফাইল এডিট করুন
+							</a>
+						</div><!-- End page-content -->
+					</div><!-- End col-md-12 -->
+					<div class="col-md-12">
+						<div class="page-content page-content-user-profile">
+							<div class="user-profile-widget">
+								<h2>স্ট্যাটাস</h2>
+								<div class="ul_list ul_list-icon-ok">
+									<ul>
+										<li><i class="icon-question-sign"></i><a href="">রিপোর্ট<span> ( <span class="totalreport">30</span> ) </span></a></li>
+										<li><i class="icon-comment"></i><a href="">প্রতিউত্তর<span> ( <span class="responded">10</span> ) </span></a></li>
+										
+									</ul>
+								</div>
+							</div><!-- End user-profile-widget -->
+						</div><!-- End page-content -->
+					</div><!-- End col-md-12 -->
+				</div><!-- End user-profile -->
+			</div><!-- End row -->
+			<div class="clearfix"></div>
+			<div class="page-content page-content-user">
+				<div class="user-questions">
+					<div class="randr">
+						<div class="alert-message info">
+							<i class="icon-bullhorn"></i>
+                            <p>
+                                <span>লোড করা হচ্ছে</span><br />
+								ডাটা লোড করা হচ্ছে......
+							</p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="height_20"></div>
+
+			<a class="load-questions"><i class="icon-refresh"></i>আরো দেখুন...</a>
+				
+		</div><!-- End main -->
+		<aside class="col-md-3 sidebar">
+
+			@await Component.InvokeAsync("Status")
+
+			@await Component.InvokeAsync("RecentReport")
+
+		</aside><!-- End sidebar -->
+	</div>
+</section>
+
+@section Scripts{
+    <script src="~/lib/profile.js"></script>
+	<style>
+		.editprof {
+			width: 100%;
+			text-align: center;
+			margin-top: 20px;
+		}
+	</style>
+}

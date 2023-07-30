@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewData["Title"] = "তথ্য হালনাগাদ করুন";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+	<section class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>তথ্য হালনাগাদ করুন</h1>
+			</div>
+			<div class="col-md-12">
+				<div class="crumbs">
+					<a asp-action="Index" asp-controller="Home">হোম</a>
+					<span class="crumbs-span">/</span>
+					<span class="current">তথ্য হালনাগাদ</span>
+				</div>
+			</div>
+		</div><!-- End row -->
+	</section><!-- End container -->
+</div>
+	
+<section class="container main-content">
+	<div class="row">
+		<div class="col-md-9">
+			<div class="page-content">
+				<div class="boxedtitle page-title"><h2>তথ্য হালনাগাদ করুন</h2></div>
+					
+				<div class="form-style form-style-4">
+					<form method="post" enctype="multipart/form-data" id="aboutForm">
+						<div class="form-inputs clearfix">
+							<p>
+								<label class="required">ঠিকানা<span>*</span></label>
+								<input type="text" name="address" id="address">
+							</p>
+							<p>
+								<label class="required">ইমেইল<span>*</span></label>
+								<input type="email" name="email" id="email">
+							</p>
+							<p>
+								<label class="required">ফোনঃ<span>*</span></label>
+								<input type="text" name="phone" id="phone">
+							</p>
+							<p>
+								<label class="required">ম্যাপ লিঙ্কঃ<span>*</span></label>
+								<input type="text" name="mapLink" id="mapLink">
+							</p>
+						</div>
+						<div class="form-style form-style-2">
+							<div class="user-profile-img"><img src="" alt="logo" id="logoImage" style="height: 80px !important;"></div>
+							<p class="user-profile-p">
+								<label>লগোঃ</label>
+								<div class="fileinputs">
+									<input type="file" class="file" name="logo" id="logo">
+									<div class="fakefile">
+										<button type="button" class="button small margin_0">Select file</button>
+										<span><i class="icon-arrow-up"></i>Browse</span>
+									</div>
+								</div>
+							<p></p>
+							<div class="clearfix"></div>
+							<p>
+								<label>অ্যাপ সম্পর্কে (সংক্ষিপ্ত):</label>
+								<textarea cols="58" rows="2" name="aboutShort" id="aboutShort"></textarea>
+							</p>
+							<p>
+								<label>অ্যাপ সম্পর্কে (বিস্তারিত):</label>
+								<textarea cols="58" rows="8" name="about" id="about"></textarea>
+							</p>
+						</div>
+						<p class="form-submit">
+							<input type="submit" value="আপডেট করুন" class="button color small login-submit submit">
+						</p>
+					</form>
+				</div>
+			</div><!-- End page-content -->
+		</div><!-- End main -->
+		<aside class="col-md-3 sidebar">
+
+			@await Component.InvokeAsync("Status")
+
+			@await Component.InvokeAsync("RecentReport")
+
+		</aside><!-- End sidebar -->
+	</div>
+</section>
+
+@section Scripts{
+	<script src="~/lib/about.js"></script>
+	<script>
+		loadAboutInfo();
+	</script>
+}

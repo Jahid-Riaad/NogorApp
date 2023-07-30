@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewData["Title"] = "অভিযোগ করুন";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+	<section class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>অভিযোগ দাখিল করুন</h1>
+			</div>
+			<div class="col-md-12">
+				<div class="crumbs">
+					<a asp-action="Index" asp-controller="Home">হোম</a>
+					<span class="crumbs-span">/</span>
+					<span class="current">অভিযোগ</span>
+				</div>
+			</div>
+		</div><!-- End row -->
+	</section><!-- End container -->
+</div><!-- End breadcrumbs -->
+	
+<section class="container main-content">
+	<div class="row">
+		<div class="col-md-9">
+				
+			<div class="page-content ask-question">
+				<div class="boxedtitle page-title"><h2>অভিযোগ দাখিল করুন</h2></div>
+					
+				<p>দয়াকরে আপনার অভিযোগ যতটা সম্ভব গুছিয়ে লিখুন। আপনি যতো বেশি সংখ্যক তথ্য দিয়ে সহায়তা করবেন আমাদের আপানার সমস্যা সমাধান করতে তত বেশি সুবিধা হবে। দয়াকরে অপ্রয়োজনীয় তথ্য দেয়া থেকে বিরত থাকুন। ধন্যবাদ। </p>
+					
+				<div class="form-style form-style-3" id="question-submit">
+					<form method="post" enctype="multipart/form-data" id="reportForm">
+						<div class="form-inputs clearfix">
+							<p>
+								<label class="required">অভিযোগের শিরোনাম<span>*</span></label>
+								<input type="text" class="question-title" id="title" name="title">
+								<span class="form-description">দয়াকরে আপানার অভিযোগকে নির্দিষ্ট করে এমন শিরোনাম লিখুন</span>
+							</p>
+							<p>
+								<label class="required">আপনার নাম<span>*</span></label>
+								<input type="text" class="question-title" id="name" name="name">
+								<span class="form-description">আপনার নাম লিখুন।</span>
+							</p>
+							<p>
+								<label class="required">আপনার ফোন নাম্বার<span>*</span></label>
+								<input type="text" class="question-title" id="phone" name="phone" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
+								<span class="form-description">আপনার ফোন নাম্বার লিখুন. চিন্তিত হওয়ার কিছু নেই, আপানর ফোন নাম্বার কোথাও প্রকাশ করা হবে না।</span>
+							</p>
+							<p>
+								<label class="required">আপনার ইমেল</label>
+								<input type="text" class="question-title" id="bemail" name="bemail">
+								<span class="form-description">আপনার ইমেল এড্রেস লিখুন (যদি থাকে). চিন্তিত হওয়ার কিছু নেই, আপানর ফোন নাম্বার কোথাও প্রকাশ করা হবে না।</span>
+							</p>
+							<p>
+								<label class="required">বিভাগ<span>*</span></label>
+								<span class="styled-select">
+									<select name="department" id="department">
+										<option value="">Select a Depertment</option>
+										<option value="1">Category 1</option>
+										<option value="2">Category 2</option>
+									</select>
+								</span>
+								<span class="form-description">আপনার অভিযোগের বিভাগ নির্বাচন করুন।</span>
+							</p>
+							<div class="clearfix"></div>
+								
+							<label>ফাইল সংযুক্তি</label>
+							<div class="fileinputs">
+								<input type="file" class="file" multiple name="attachment" id="attachment">
+								<div class="fakefile">
+									<button type="button" class="button small margin_0">ফাইল নির্বাচন করুন</button>
+									<span><i class="icon-arrow-up"></i>ব্রাউজ</span>
+								</div>
+							</div>
+							<span class="form-description file">আপনি এক বা একের অধিক ফাইল নির্বাচন করতে পারেন। শুধু মাত্র png, jpg, jpeg, pdf, mp3, এবং mp4 নির্বাচন করতে পারবেন। সর্বোচ্চ ১০ এম্বি ফাইল আপলোড করা যাবে।</span>
+						</div>
+						<div id="form-textarea">
+							<p>
+								<label>বিস্তারিত</label>
+								<textarea id="body" class="question-details" aria-required="true" cols="58" rows="8" name="body"></textarea>
+								<span class="form-description">আপনার অভিযোগ বিস্তারিত ভাবে লিখুন।</span>
+							</p>
+						</div>
+						<p class="form-submit">
+							<input type="submit" id="publish-question" value="অভিযোগ দাখিল করুন" class="button color small submit" name="submit">
+						</p>
+					</form>
+				</div>
+			</div><!-- End page-content -->
+		</div><!-- End main -->
+		<aside class="col-md-3 sidebar">
+
+			@await Component.InvokeAsync("Status")
+
+			@await Component.InvokeAsync("RecentReport")
+
+		</aside><!-- End sidebar -->
+	</div><!-- End row -->
+</section><!-- End container -->
+
+<style>
+	span.form-description.file {
+		font-size: 12px;
+		color: gray;
+		margin-top: -20px;
+		margin-bottom: 23px;
+	}
+
+	label.error {
+		margin-left: 18% !important;
+	}
+	label#attachment-error,label#department-error {
+		margin-left: 0px !important;
+	}
+</style>
+
+@section Scripts{
+	<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.js"></script>
+	<script src="~/lib/report.js"></script>
+}

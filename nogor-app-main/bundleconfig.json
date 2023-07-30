@@ -1,0 +1,8 @@
+[
+  {
+    "outputFileName": "wwwroot/lib/profile.min.js",
+    "inputFiles": [
+      "wwwroot/lib/profile.js"
+    ]
+  }
+]

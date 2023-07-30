@@ -1,0 +1,139 @@
+﻿@model Question
+@{
+    ViewData["Title"] = @Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+	<section class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>@Model.Title</h1>
+			</div>
+			<div class="col-md-12">
+				<div class="crumbs">
+					<a asp-action="Index" asp-controller="Home">হোম</a>
+					<span class="crumbs-span">/</span>
+					<span class="current">রিপোর্ট</span>
+				</div>
+			</div>
+		</div><!-- End row -->
+	</section><!-- End container -->
+</div><!-- End breadcrumbs -->
+	
+	<section class="container main-content">
+		<div class="row">
+			<div class="col-md-9">
+				<article class="post single-post clearfix">
+					<div class="post-inner">
+			        	<h2 class="post-title"><span class="post-type">
+							<i class="icon-folder-open"></i></span>@Model.Title
+						</h2>
+						
+			        	<div class="post-meta">
+			        	    <span class="meta-date"><i class="icon-time"></i>@Model.AskedOn.ToString("MMMM dd, yyyy")</span>
+			        	    <span class="meta-categories">
+								<i class="icon-suitcase"></i>
+								<a asp-action="Department" asp-controller="Question" asp-route-id="@Model.Department.Split(", ")[0]">@Model.Department.Split(", ")[1]</a>
+							</span>
+			        	</div>
+				        <div class="post-content">
+				            <p>@Model.Body</p>
+							
+							@if(Model.Attachments.Length > 5)
+							{
+								<hr /><br />	
+								<strong> ফাইল সংযুক্তি সমূহঃ </strong>
+								<ul style="margin-top: 15px;">
+									@foreach (var item in Model.Attachments.TrimEnd(';').Split(';'))
+									{
+										<li><a href="~/@item"><i class="icon-file"></i> @item.Split("\\")[1]</a></li>
+									}
+								</ul>
+							}
+						
+				        </div><!-- End post-content -->
+						@if (User.Identity.IsAuthenticated && Model.Status == 0)
+						{
+							<a id="approve" onclick="approveReport()">সমধান করা হয়ে গিয়েছে!</a>
+						}
+				        <div class="clearfix"></div>
+				    </div><!-- End post-inner -->
+				</article><!-- End article.post -->
+				
+				<div id="commentlist" class="page-content">
+					<div class="boxedtitle page-title"><h2>প্রতিউত্তর সমূহ ( <span class="color">0</span> )</h2></div>
+					<ol class="commentlist clearfix">
+					    <li class="comment">
+					        <div class="comment-body clearfix"> 
+					            <div class="avatar"><img alt="" src="../ask-me/images/demo/avatar.png"></div>
+					            <div class="comment-text">
+					                <div class="author clearfix">
+					                	<div class="comment-meta">
+					                        <span>admin</span>
+					                        <div class="date">January 15 , 2014 at 10:00 pm</div> 
+					                    </div>
+					                </div>
+					                <div class="text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi adipiscing gravida odio, sit amet suscipit risus ultrices eu. Fusce viverra neque at purus laoreet consequat. Vivamus vulputate posuere nisl quis consequat.</p>
+					                </div>
+					            </div>
+					        </div>
+					    </li>
+					</ol><!-- End commentlist -->
+				</div><!-- End page-content -->
+			@if (User.Identity.IsAuthenticated)
+			{
+				<div id="respond" class="comment-respond page-content clearfix">
+					<div class="boxedtitle page-title"><h2>প্রতিউত্তর দিন</h2></div>
+					<form action="" method="post" id="commentForm" class="comment-form" onsubmit="return false">
+                        <input type="hidden" value="" id="itoken" />
+						<div id="respond-textarea">
+							<p>
+								<label class="required" for="comment">প্রতিউত্তর<span>*</span></label>
+								<textarea id="comment" name="comment" aria-required="true" cols="58" rows="10"></textarea>
+							</p>
+						</div>
+						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="প্রতিউত্তর দিন" class="button small color">
+							<input name="reset" type="reset" id="reset" value="রিসেট" class="button small color">
+						</p>
+					</form>
+				</div>
+			}
+			</div><!-- End main -->
+			<aside class="col-md-3 sidebar">
+				@await Component.InvokeAsync("Status")
+
+				@await Component.InvokeAsync("RecentReport")
+			</aside><!-- End sidebar -->
+		</div><!-- End row -->
+	</section><!-- End container -->
+
+@section Scripts{
+	<script src="~/lib/response.js"></script>
+	<style>
+		#respond input#submit {
+			font-size: 15px;
+			font-weight: bold;
+			width: 88%;
+			float: left;
+		}
+		#respond input#reset {
+			width: 10%;
+			float: right;
+		}
+		.comment-reply {
+			margin-left: 20px;
+		}
+		#approve{
+			text-align: center;
+			background: #4480d6;
+			padding: 10px;
+			color: #fff;
+			border-radius: 5px;
+			cursor: pointer;
+			display: block;
+			font-size: 15px;
+		}
+	</style>
+}

@@ -1,0 +1,27 @@
+﻿<div class="widget">
+	<h3 class="widget_title">সর্বশেষ রিপোর্ট</h3>
+	<ul class="related-posts">
+		@foreach (var item in ViewBag.RPost){
+			<li class="related-item">
+				<h3><a asp-action="ViewReport" asp-controller="Question" asp-route-id="@item.Id">@item.Title</a></h3>
+				<p>
+					@if(!String.IsNullOrEmpty(item.Body)) { 
+						if(item.Body.Length > 50)
+						{
+							@item.Body.Substring(0, 50)
+						}
+						else
+						{
+							@item.Body 
+						}
+
+					}
+					else{ 
+						@item.Body 
+					}
+				</p>
+				<div class="clear"></div><span>@item.AskedOn.ToString("MMM dd, yyyy")</span>
+			</li>
+		}
+	</ul>
+</div>

@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewData["Title"] = "আকাউন্ট";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+	<section class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>আকাউন্ট পরিচালনা করুন</h1>
+			</div>
+			<div class="col-md-12">
+				<div class="crumbs">
+					<a asp-action="Index" asp-controller="Home">হোম</a>
+					<span class="crumbs-span">/</span>
+					<span class="current">আকাউন্ট</span>
+				</div>
+			</div>
+		</div><!-- End row -->
+	</section><!-- End container -->
+</div><!-- End breadcrumbs -->
+
+<section class="container main-content">
+	<div class="row">
+        <div class="col-xl-12">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-5">
+                                <h4 class="card-title" style="float:left;">আকাউন্ট লিস্ট</h4>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="modalOpen" style="float:right;">
+                                    আকাউন্ট তৈরি করুন
+                                </button>
+                            </div>
+                            <hr />
+                            <table id="tblCategory" class="table table-bordered dt-reaponsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>নাম</th>
+                                        <th>ইমেল</th>
+                                        <th>ক্রিয়া</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+
+</section>
+
+<div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="crdTitle">ব্যাবহারকারী যোগ করুন</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="icoReset"></button>
+            </div>
+            <div class="modal-body">
+                <form id="userForm" method="post" onsubmit="return false;">
+                    <input type="hidden" id="hiddenText" value=""/>
+                    <div class="row">
+                        
+                        <div class="form-group">
+                            <label for="নাম">নাম</label>
+                            <input type="text" id="Name" name="Name" class="form-control" autocomplete="off" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Email">ইমেল</label>
+                            <input type="email" id="Email" name="Email" class="form-control" autocomplete="off" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Password">পাসওয়ার্ড</label>
+                            <input type="password" id="Password" name="Password" class="form-control" autocomplete="off" />
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="ConfirmPassword">কনফার্ম পাসওয়ার্ড</label>
+                            <input type="password" id="ConfirmPassword" name="ConfirmPassword" class="form-control" autocomplete="off" />
+                        </div>
+                    </div>
+
+                    <button type="submit" id="btnSave" class="btn btn-primary mr-1 waves-effect waves-light">তৈরি করুন</button>
+
+                    <button type="reset" id="btnReset" class="btn btn-danger mr-1 waves-effect waves-light" style="display:none">বাতিল</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModalEdit" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="crdTitle">ব্যাবহারকারী আপডেট করুন</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="icoReset"></button>
+            </div>
+            <div class="modal-body">
+                <form id="euserForm" method="post" onclick="return false">
+                    <input type="hidden" id="ehiddenText" value=""/>
+                    <div class="row">
+                        
+                        <div class="form-group">
+                            <label for="eName">নাম</label>
+                            <input type="text" id="eName" name="Name" class="form-control" autocomplete="off" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eEmail">ইমেল</label>
+                            <input type="email" id="eEmail" name="Email" class="form-control" autocomplete="off" disabled />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ePassword">পাসওয়ার্ড</label>
+                            <input type="password" id="ePassword" name="Password" class="form-control" autocomplete="off" />
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="eConfirmPassword">কনফার্ম পাসওয়ার্ড</label>
+                            <input type="password" id="eConfirmPassword" name="ConfirmPassword" class="form-control" autocomplete="off" />
+                        </div>
+                    </div>
+
+                    <button type="submit" id="ebtnSave" class="btn btn-primary mr-1 waves-effect waves-light">আপডেট</button>
+
+                    <button type="reset" id="ebtnReset" class="btn btn-danger mr-1 waves-effect waves-light">বাতিল</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+@section Scripts{
+    <script src="~/lib/account.js"></script>
+}
+
+<style>
+    input[type="text"], input[type="password"], input[type="email"], textarea, select{
+        width: 100%;
+    }
+
+    label.error {
+        margin-left: 0px;
+        margin-bottom: 10px;
+    }
+    i{
+        font-size:20px;
+    }
+</style>
+
+
+

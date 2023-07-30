@@ -1,0 +1,160 @@
+﻿@model PaginatedList<QuestionRetriveViewModel>
+
+@{
+    ViewData["Title"] = @TempData["keyword"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+	int cp = Model.PageIndex;
+    int tp = Model.TotalPage;
+    var next = Model.HasNext ? 1 : 0;
+    var prev = Model.HasPrevious ? 1 : 0;
+    int i = (cp - 1) * 10 + 1;
+}
+
+<div class="breadcrumbs">
+	<section class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>সার্চ রেজাল্ট - @TempData["keyword"]</h1>
+			</div>
+			<div class="col-md-12">
+				<div class="crumbs">
+					<a asp-action="Index" asp-controller="Home">হোম</a>
+					<span class="crumbs-span">/</span>
+					<span class="current">সার্চ</span>
+				</div>
+			</div>
+		</div><!-- End row -->
+	</section><!-- End container -->
+</div><!-- End breadcrumbs -->
+	
+<section class="container main-content">
+	<div class="row">
+		<div class="col-md-9">
+
+			<div class="tabs-warp question-tab">
+				<div class="tab-inner-warp">
+					<div class="tab-inner">
+						<div class="randr">
+
+							@if (!Model.Any())
+							{
+							<div class="alert-message info">
+								<i class="icon-bullhorn"></i>
+								<p><span> তথ্য খুঁজে পাওয়া যায়নি</span><br />দুক্ষিত "@TempData["keyword"]" সম্পর্কিত কোন তথ্য খুঁজে পাওয়া যায়নি!
+								</p>
+							</div>
+
+							}
+
+							@foreach (var post in Model)
+							{
+								<article class="question question-type-normal">
+									<h2>
+										<a asp-action="ViewReport" asp-controller="Question" asp-route-id="@post.Id">@post.Title</a> 
+									</h2>
+									<a class="question-report" asp-action="Department" asp-controller="Question" asp-route-id="@post.DepartmentId">
+										<i class="icon-question-sign"></i> @post.Department
+									</a>
+									<div class="question-author">
+										<a href="#" original-title="@post.Name" class="question-author-img tooltip-n">
+											<span></span>
+											<img alt="" src="~/lib/report.png"></a>
+									</div>
+									<div class="question-inner">
+										<div class="clearfix"></div>
+										<p>
+											@if(!String.IsNullOrEmpty(post.Body)) { 
+												if(post.Body.Length > 50)
+												{
+													@post.Body.Substring(0, 50)
+												}
+												else
+												{
+													@post.Body 
+												}
+
+											}
+											else{ 
+												@post.Body 
+											}
+										</p>
+										<div class="question-details">
+											@if(post.Status == 1){
+												<span class="question-answered question-answered-done">
+													<i class="icon-ok"></i>solved
+												</span>
+											}
+											else
+											{
+												<span class="question-answered">
+													<i class="icon-ok"></i>In progress
+												</span>
+											}
+											<span class="question-date">
+												<i class="icon-time"></i>@post.AskedOn.ToString("d")
+											</span>
+										</div>
+										<div class="clearfix"></div></div>
+								</article>
+							}
+
+						</div>
+
+						<div class="pagination">
+
+							@if(prev == 1)
+							{
+								<a asp-route-keyword="@TempData["keyword"]" asp-route-page="@(cp-1)" class="next-button">
+									<i class="icon-angle-left"></i>
+								</a>
+							}
+							else
+							{
+								<span><i class="icon-angle-left"></i></span>
+							}
+
+							@for (int k = 1; k < Model.TotalPage + 1; k++)
+							{
+								if (k >= (cp - 5) && k <= (cp + 5))
+								{
+									if (cp == k)
+									{
+										<span class="current">@k</span>
+									}
+									else
+									{
+										<a asp-route-keyword="@TempData["keyword"]" asp-route-page="@k">@k</a>
+									}
+								}
+							}
+							@if(next == 1)
+							{
+								<a asp-route-keyword="@TempData["keyword"]" asp-route-page="@(cp+1)" class="next-button">
+									<i class="icon-angle-right"></i>
+								</a>
+							}
+							else
+							{
+								<span><i class="icon-angle-right"></i></span>
+							}
+
+						</div>
+					</div>
+				</div>
+			</div><!-- End page-content -->
+		</div><!-- End main -->
+		<aside class="col-md-3 sidebar">
+			@await Component.InvokeAsync("Status")
+
+			@await Component.InvokeAsync("RecentReport")
+		</aside><!-- End sidebar -->
+	</div><!-- End row -->
+</section><!-- End container -->
+
+<style>
+	.disabled{
+		
+	}
+</style>
+

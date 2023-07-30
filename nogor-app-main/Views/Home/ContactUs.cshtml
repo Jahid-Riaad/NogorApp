@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewData["Title"] = "যোগাযোগ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+	<section class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>যোগাযোগ করুন</h1>
+			</div>
+			<div class="col-md-12">
+				<div class="crumbs">
+					<a asp-action="Index" asp-controller="Home">হোম</a>
+					<span class="crumbs-span">/</span>
+					<span class="current">যোগাযোগ</span>
+				</div>
+			</div>
+		</div><!-- End row -->
+	</section><!-- End container -->
+</div><!-- End breadcrumbs -->
+	
+<section class="container main-content page-full-width">
+	<div class="row">
+		<div class="contact-us">
+			<div class="col-md-12">
+				<div class="page-content">
+					<iframe class="ai-map" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src=""></iframe>
+				</div><!-- End page-content -->
+			</div>
+			<div class="col-md-7">
+				<div class="page-content">
+					<h2>আমাদের ইমেল করুন</h2>
+					<p>যেকোনো পরামর্শ কিংবা যে কোন প্রয়োজনে আমাদের ইমেল করতে পারেন। আপনাদের ইমেল গুলো আমরা গুরুত্ব সহকারে পড়ে থাকি।</p>
+					<form class="form-style form-style-3 form-style-5 form-js" action="" method="post" id="contactForm">
+						<div class="form-inputs clearfix">
+							<p>
+								<label for="name" class="required">নাম<span>*</span></label>
+								<input type="text" class="required-item" name="name" id="name" aria-required="true">
+							</p>
+							<p>
+								<label for="mail" class="required">ইমেল<span>*</span></label>
+								<input type="email" class="required-item" id="email" name="email" aria-required="true">
+							</p>
+							<p>
+								<label for="url" class="required">মোবাইল</label>
+								<input type="text" id="phone" name="phone" value="">
+							</p>
+						</div>
+						<div class="form-textarea">
+							<p>
+								<label for="message" class="required">বার্তা<span>*</span></label>
+								<textarea id="message" class="required-item" name="message" aria-required="true" cols="58" rows="7"></textarea>
+							</p>
+						</div>
+						<p class="form-submit">
+							<input name="submit" type="submit" value="পাঠান" class="submit button small color">
+						</p>
+					</form>
+				</div><!-- End page-content -->
+			</div><!-- End col-md-6 -->
+			<div class="col-md-5">
+				<div class="page-content">
+					<h2>আমাদের সম্পর্কে</h2>
+					<p class="ai-body"></p>
+					<div class="widget widget_contact">
+						<ul>
+							<li><i class="icon-map-marker"></i>ঠিকানাঃ <p class="ai-address"></p></li>
+							<li><i class="icon-phone"></i>ফোন নাম্বারঃ <p class="ai-phone"></p></li>
+							<li><i class="icon-envelope-alt"></i>ইমেলঃ <p class="ai-email"></p></li>
+
+						</ul>
+					</div>
+				</div><!-- End page-content -->
+			</div><!-- End col-md-6 -->
+		</div><!-- End contact-us -->
+	</div><!-- End row -->
+</section><!-- End container -->
+
+<style>
+
+	label.error {
+		margin-left: 18% !important;
+	}
+
+</style>
+
+@section Scripts{
+	<script type="text/javascript" src="~/lib/about.js"></script>
+	<script>
+		fatchAboutInfo();
+	</script>
+}

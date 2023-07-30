@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewData["Title"] = "প্রোফাইল এডিট করুন";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+	<section class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>প্রোফাইল এডিট করুন</h1>
+			</div>
+			<div class="col-md-12">
+				<div class="crumbs">
+					<a asp-action="Index" asp-controller="Home">হোম</a>
+					<span class="crumbs-span">/</span>
+					<a asp-action="Profile" asp-controller="Account" asp-route-id="@ViewBag.Id">প্রোফাইল</a>
+					<span class="crumbs-span">/</span>
+					<span class="current">এডিট প্রোফাইল</span>
+				</div>
+			</div>
+		</div><!-- End row -->
+	</section><!-- End container -->
+</div>
+	
+<section class="container main-content">
+	<div class="row">
+		<div class="col-md-9">
+			<div class="page-content">
+				<div class="boxedtitle page-title"><h2>Edit Profile</h2></div>
+					
+				<div class="form-style form-style-4">
+					<form method="post" enctype="multipart/form-data" id="profileEditForm">
+						<div class="form-inputs clearfix">
+							<p>
+								<label class="required">নামঃ<span>*</span></label>
+								<input type="text" name="name" id="name">
+							</p>
+							<p>
+								<label class="required">ইমেইল<span>*</span></label>
+								<input type="email" name="email" id="email" disabled>
+							</p>
+							<p>
+								<label class="required">পদবীঃ<span>*</span></label>
+								<input type="text" name="designation" id="designation">
+							</p>
+							<p>
+								<label class="required">বর্তমান পাসওয়ার্ডঃ<span>*</span></label>
+								<input type="password" name="current_password" id="current_password">
+							</p>
+							<p>
+								<label>পাসওয়ার্ডঃ</label>
+								<input type="password" name="password" id="password">
+							</p>
+							<p>
+								<label>কনফার্ম পাসওয়ার্ডঃ</label>
+								<input type="password" name="repassword" id="repassword">
+							</p>
+						</div>
+						<div class="form-style form-style-2">
+							<div class="user-profile-img"><img src="" alt="admin" id="profileImage" style="height: 80px !important;"></div>
+							<p class="user-profile-p">
+								<label>প্রোফাইল ইমেজঃ</label>
+								<div class="fileinputs">
+									<input type="file" class="file" name="profilePicture" id="profilePicture">
+									<div class="fakefile">
+										<button type="button" class="button small margin_0">Select file</button>
+										<span><i class="icon-arrow-up"></i>Browse</span>
+									</div>
+								</div>
+							<p></p>
+							<div class="clearfix"></div>
+							<p>
+								<label>আপানার সম্পর্কেঃ</label>
+								<textarea cols="58" rows="8" name="about" id="about"></textarea>
+							</p>
+						</div>
+						<div class="form-inputs clearfix">
+							<p>
+								<label>Facebook</label>
+								<input type="text" name="flink" id="flink">
+							</p>
+							<p>
+								<label>Twitter</label>
+								<input type="text" name="tlink" id="tlink">
+							</p>
+							<p>
+								<label>Linkedin</label>
+								<input type="text" name="llink" id="llink">
+							</p>
+						</div>
+						<p class="form-submit">
+							<input type="submit" value="আপডেট করুন" class="button color small login-submit submit">
+						</p>
+					</form>
+				</div>
+			</div><!-- End page-content -->
+		</div><!-- End main -->
+		<aside class="col-md-3 sidebar">
+
+			@await Component.InvokeAsync("Status")
+
+			@await Component.InvokeAsync("SocialStatus")
+
+			@await Component.InvokeAsync("RecentReport")
+
+		</aside><!-- End sidebar -->
+	</div>
+</section>
+
+@section Scripts{
+	<script src="~/lib/profile.js"></script>
+}

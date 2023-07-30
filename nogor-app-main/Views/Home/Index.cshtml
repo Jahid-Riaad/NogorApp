@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewData["Title"] = "হোম";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+	<div class="section-warp ask-me">
+		<div class="container clearfix">
+			<div class="box_icon box_warp box_no_border box_no_background" box_border="transparent"
+				box_background="transparent" box_color="#FFF">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>নগর জিজ্ঞাসায় আপনাকে স্বাগতম</h2>
+						<p>নগর জিজ্ঞাসায় কুমিল্লা সিটি করপরেশনের একটি সিস্টেম যেখানে উক্ত শহরের সকল নাগরিক তাদের দৈনন্দিন নাগরিক সমস্যা সমূহ সম্পর্কে অভিযোগ দাখিলের মাধ্যমে সমধান পেতে পারেন। </p>
+						<div class="clearfix"></div>
+						<a class="color button dark_button medium" asp-action="ContactUs" asp-controller="Home">আমাদের সম্পর্কে</a>
+						<div class="clearfix"></div>
+						<form class="form-style form-style-2" asp-action="Report" asp-controller="Question">
+							<p>
+								<input disabled type="text" id="question_title"
+									value="আপনার কোন অভিযোগ আছে? থেকে থাকলে এখনই আমাদের জানান।">
+								<i class="icon-pencil"></i>
+								<span class="color button small publish-question">অভিযোগ করুন</span>
+							</p>
+						</form>
+					</div>
+				</div><!-- End row -->
+			</div><!-- End box_icon -->
+		</div><!-- End container -->
+	</div><!-- End section-warp -->
+
+	<section class="container main-content">
+		<div class="row">
+			<div class="col-md-9">
+
+				<div class="tabs-warp question-tab">
+					<ul class="tabs">
+						<li class="tab"><a href="#" class="current">সর্বশেষ রিপোর্ট</a></li>
+					</ul>
+					<div class="tab-inner-warp">
+						<div class="tab-inner">
+							<div class="randr">
+								<div class="alert-message info">
+									<i class="icon-bullhorn"></i>
+									<p><span>ডাটা লোড করা হচ্ছে......</span>
+									</p>
+								</div>
+							</div>
+							
+							<a class="load-questions"><i class="icon-refresh"></i>আরো দেখুন...</a>
+						</div>
+					</div>
+				</div><!-- End page-content -->
+			</div><!-- End main -->
+			<aside class="col-md-3 sidebar">
+
+				@await Component.InvokeAsync("Status")
+
+				@await Component.InvokeAsync("RecentReport")
+
+			</aside><!-- End sidebar -->
+		</div><!-- End row -->
+	</section><!-- End container -->
+
+@section Scripts{
+<script src="~/lib/load_report.js"></script>
+	<script>
+		$('.publish-question').on('click', function(){
+			window.location.href = 'Question/Report'
+		});
+
+		var page = 1;
+		var size = 3;
+
+		$(document).ready(function(){
+			if(page == 1) loadAllReport(page, size);
+		});
+
+		loadMore(0, 'AllReport', 0);
+
+	</script>
+}
